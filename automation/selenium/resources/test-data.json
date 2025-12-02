@@ -1,0 +1,49 @@
+{
+  "testCards": [
+    {
+      "cardNumber": "4242424242424242",
+      "description": "Always approved",
+      "expectedStatus": "APPROVED"
+    },
+    {
+      "cardNumber": "4000000000000002",
+      "description": "Always declined",
+      "expectedStatus": "DECLINED"
+    },
+    {
+      "cardNumber": "4000000000000069",
+      "description": "Fraud suspected",
+      "expectedStatus": "FRAUD_SUSPECTED"
+    },
+    {
+      "cardNumber": "4000000000000077",
+      "description": "Timeout (5s delay)",
+      "expectedStatus": "TIMEOUT"
+    },
+    {
+      "cardNumber": "4000000000003220",
+      "description": "3DS required",
+      "expectedStatus": "THREE_DS_REQUIRED"
+    },
+    {
+      "cardNumber": "4000000000000085",
+      "description": "Internal error",
+      "expectedStatus": "ERROR"
+    },
+    {
+      "cardNumber": "4000000000009999",
+      "description": "High latency (3s)",
+      "expectedStatus": "APPROVED"
+    }
+  ],
+  "testMerchants": [
+    {
+      "merchantId": "DEMO_MERCHANT",
+      "description": "Default demo merchant"
+    },
+    {
+      "merchantId": "E2E_MERCHANT",
+      "description": "E2E test merchant"
+    }
+  ]
+}
