@@ -6,6 +6,7 @@ import com.pfa.paymentgateway.service.ScenarioService;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,9 @@ public class ScenarioController {
     private static final Logger logger = LoggerFactory.getLogger(ScenarioController.class);
 
     private final ScenarioService scenarioService;
+    
+    @Value("${api.admin.key:admin-secret-key}")
+    private String adminApiKey;
 
     public ScenarioController(ScenarioService scenarioService) {
         this.scenarioService = scenarioService;
@@ -64,7 +68,7 @@ public class ScenarioController {
             @Valid @RequestBody ScenarioRequest request) {
         
         // Basic API key validation (in production, use proper authentication)
-        if (apiKey == null || !apiKey.equals("admin-secret-key")) {
+        if (apiKey == null || !apiKey.equals(adminApiKey)) {
             logger.warn("Unauthorized scenario creation attempt");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }

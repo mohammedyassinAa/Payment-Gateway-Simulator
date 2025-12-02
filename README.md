@@ -173,11 +173,9 @@ Payment-Gateway-Simulator/
 │           ├── unit/          # Tests unitaires
 │           ├── integration/   # Tests d'intégration
 │           ├── api/           # Tests API RestAssured
-│           └── e2e/           # Tests E2E Selenium
-├── automation/selenium/       # Ressources Selenium
-│   ├── pages/                 # Page Objects
-│   ├── tests/                 # Classes de test
-│   └── resources/             # Fixtures JSON
+│           └── e2e/           # Tests E2E Selenium (Page Objects inclus)
+├── automation/selenium/
+│   └── resources/             # Fixtures JSON pour tests
 ├── .github/workflows/         # GitHub Actions
 └── pom.xml
 ```
@@ -190,7 +188,13 @@ Payment-Gateway-Simulator/
 
 ### Clé API Admin
 
-Header: `X-API-Key: admin-secret-key`
+La clé API peut être configurée via:
+- Variable d'environnement: `API_ADMIN_KEY`
+- Propriété application: `api.admin.key`
+
+Header: `X-API-Key: <votre-clé>`
+
+Par défaut (développement): `admin-secret-key`
 
 ## 🚢 CI/CD
 

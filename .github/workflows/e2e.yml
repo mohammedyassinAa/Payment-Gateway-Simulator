@@ -15,6 +15,9 @@ on:
     # Run nightly at 2 AM UTC
     - cron: '0 2 * * *'
 
+permissions:
+  contents: read
+
 jobs:
   e2e:
     name: Selenium E2E Tests
