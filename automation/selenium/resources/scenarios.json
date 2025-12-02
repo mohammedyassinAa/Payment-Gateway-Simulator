@@ -1,0 +1,54 @@
+{
+  "scenarios": [
+    {
+      "name": "declined_card",
+      "matchRules": {
+        "cardNumberPrefix": "4000000000000002"
+      },
+      "action": "DECLINED",
+      "responseCode": "card_declined"
+    },
+    {
+      "name": "fraud_card",
+      "matchRules": {
+        "cardNumberPrefix": "4000000000000069"
+      },
+      "action": "FRAUD_SUSPECTED",
+      "responseCode": "fraud_suspected"
+    },
+    {
+      "name": "timeout_card",
+      "matchRules": {
+        "cardNumberPrefix": "4000000000000077"
+      },
+      "action": "TIMEOUT",
+      "delayMs": 5000,
+      "responseCode": "timeout"
+    },
+    {
+      "name": "3ds_required",
+      "matchRules": {
+        "cardNumberPrefix": "4000000000003220"
+      },
+      "action": "THREE_DS_REQUIRED",
+      "responseCode": "3ds_required"
+    },
+    {
+      "name": "error_card",
+      "matchRules": {
+        "cardNumberPrefix": "4000000000000085"
+      },
+      "action": "ERROR",
+      "responseCode": "internal_error"
+    },
+    {
+      "name": "high_latency",
+      "matchRules": {
+        "cardNumberPrefix": "4000000000009999"
+      },
+      "action": "APPROVED",
+      "delayMs": 3000,
+      "responseCode": "approved"
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Result - Payment Gateway Simulator</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 40px;
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .result-details {
+            text-align: left;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        .result-details p {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Payment Result</h1>
+        <p>Transaction details will be displayed here.</p>
+        <div class="result-details" id="resultDetails">
+            <p>Loading...</p>
+        </div>
+        <a href="/demo/payment" class="btn">Make Another Payment</a>
+    </div>
+    
+    <script>
+        // Get transaction ID from URL params if provided
+        const urlParams = new URLSearchParams(window.location.search);
+        const transactionId = urlParams.get('transactionId');
+        
+        if (transactionId) {
+            fetch(`/api/payments/${transactionId}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('resultDetails').innerHTML = `
+                        <p><strong>Transaction ID:</strong> ${data.transactionId}</p>
+                        <p><strong>Status:</strong> ${data.status}</p>
+                        <p><strong>Amount:</strong> ${data.amount} ${data.currency}</p>
+                        <p><strong>Created:</strong> ${data.createdAt}</p>
+                    `;
+                })
+                .catch(error => {
+                    document.getElementById('resultDetails').innerHTML = '<p>Error loading transaction details.</p>';
+                });
+        } else {
+            document.getElementById('resultDetails').innerHTML = '<p>No transaction ID provided.</p>';
+        }
+    </script>
+</body>
+</html>
