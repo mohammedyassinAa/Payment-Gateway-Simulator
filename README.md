@@ -133,6 +133,32 @@ Les tests E2E nécessitent que l'application soit en cours d'exécution.
 Les rapports sont générés dans `target/surefire-reports/`.
 Les captures d'écran E2E (en cas d'échec) sont dans `target/e2e-screenshots/`.
 
+### Tests BDD Cucumber
+
+Les tests BDD utilisent Cucumber avec Gherkin pour des scénarios lisibles.
+
+1. **Démarrer l'application** dans un terminal:
+   ```bash
+   mvn spring-boot:run -Dspring-boot.run.profiles=test
+   ```
+
+2. **Exécuter les tests BDD** dans un autre terminal:
+   ```bash
+   mvn test -Pbdd -Dapp.baseUrl=http://localhost:8080
+   ```
+
+3. **Mode headless** (pour CI):
+   ```bash
+   mvn test -Pbdd -Dselenium.headless=true -Dapp.baseUrl=http://localhost:8080
+   ```
+
+4. **Exécuter un scénario spécifique par tag**:
+   ```bash
+   mvn test -Pbdd -Dcucumber.filter.tags="@approved"
+   ```
+
+Les rapports Cucumber sont générés dans `target/cucumber-reports/`.
+
 ## 🔧 Configuration
 
 ### application.properties
