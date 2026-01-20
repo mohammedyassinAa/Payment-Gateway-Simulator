@@ -11,7 +11,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * In-memory repository for transactions.
  */
 @Repository
-public class TransactionRepository {
+public class TransactionRepository implements ITransactionRepository {
 
     private final Map<String, Transaction> transactions = new ConcurrentHashMap<>();
 

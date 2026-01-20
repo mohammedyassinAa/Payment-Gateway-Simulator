@@ -14,7 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * In-memory repository for scenarios with default scenarios pre-loaded.
  */
 @Repository
-public class ScenarioRepository {
+public class ScenarioRepository implements IScenarioRepository {
 
     private final Map<String, Scenario> scenarios = new ConcurrentHashMap<>();
 
