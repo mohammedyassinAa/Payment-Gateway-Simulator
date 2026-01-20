@@ -14,6 +14,8 @@ Simulateur de passerelle de paiement pour projet PFA (Projet de Fin d'Année). U
 - **Tests automatisés complets**: unitaires, intégration, API (RestAssured), E2E (Selenium)
 - **CI/CD** avec GitHub Actions
 
+> 📖 **Documentation**: Pour une description détaillée de l'architecture système, consultez [ARCHITECTURE.md](ARCHITECTURE.md)
+
 ## 📋 Prérequis
 
 - Java 17+
