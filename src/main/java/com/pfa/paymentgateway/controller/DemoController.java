@@ -27,3 +27,18 @@ public class DemoController {
         return "result";
     }
 }
+
+/**
+ * Controller for root path.
+ */
+@Controller
+class RootController {
+
+    /**
+     * Redirect root path to demo payment page.
+     */
+    @GetMapping("/")
+    public String root() {
+        return "redirect:/demo/payment";
+    }
+}
