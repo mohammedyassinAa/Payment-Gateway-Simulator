@@ -5,8 +5,8 @@ import com.pfa.paymentgateway.dto.PaymentResponse;
 import com.pfa.paymentgateway.model.Scenario;
 import com.pfa.paymentgateway.model.Transaction;
 import com.pfa.paymentgateway.model.TransactionStatus;
-import com.pfa.paymentgateway.repository.ScenarioRepository;
-import com.pfa.paymentgateway.repository.TransactionRepository;
+import com.pfa.paymentgateway.repository.IScenarioRepository;
+import com.pfa.paymentgateway.repository.ITransactionRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -25,10 +25,10 @@ public class PaymentService {
 
     private static final Logger logger = LoggerFactory.getLogger(PaymentService.class);
 
-    private final TransactionRepository transactionRepository;
-    private final ScenarioRepository scenarioRepository;
+    private final ITransactionRepository transactionRepository;
+    private final IScenarioRepository scenarioRepository;
 
-    public PaymentService(TransactionRepository transactionRepository, ScenarioRepository scenarioRepository) {
+    public PaymentService(ITransactionRepository transactionRepository, IScenarioRepository scenarioRepository) {
         this.transactionRepository = transactionRepository;
         this.scenarioRepository = scenarioRepository;
     }

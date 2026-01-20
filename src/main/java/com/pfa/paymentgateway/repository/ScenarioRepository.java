@@ -14,7 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * In-memory repository for scenarios with default scenarios pre-loaded.
  */
 @Repository
-public class ScenarioRepository {
+public class ScenarioRepository implements IScenarioRepository {
 
     private final Map<String, Scenario> scenarios = new ConcurrentHashMap<>();
 
@@ -75,25 +75,30 @@ public class ScenarioRepository {
         scenarios.put(highLatencyScenario.getId(), highLatencyScenario);
     }
 
+    @Override
     public Scenario save(Scenario scenario) {
         scenarios.put(scenario.getId(), scenario);
         return scenario;
     }
 
+    @Override
     public Optional<Scenario> findById(String id) {
         return Optional.ofNullable(scenarios.get(id));
     }
 
+    @Override
     public Optional<Scenario> findByName(String name) {
         return scenarios.values().stream()
                 .filter(s -> s.getName().equals(name))
                 .findFirst();
     }
 
+    @Override
     public List<Scenario> findAll() {
         return new ArrayList<>(scenarios.values());
     }
 
+    @Override
     public Optional<Scenario> findMatchingScenario(String cardNumber, String merchantId) {
         return scenarios.values().stream()
                 .filter(scenario -> matchesRules(scenario, cardNumber, merchantId))
@@ -120,10 +125,12 @@ public class ScenarioRepository {
         return matches;
     }
 
+    @Override
     public void deleteAll() {
         scenarios.clear();
     }
 
+    @Override
     public int count() {
         return scenarios.size();
     }

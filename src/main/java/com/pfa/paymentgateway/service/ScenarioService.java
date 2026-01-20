@@ -3,7 +3,7 @@ package com.pfa.paymentgateway.service;
 import com.pfa.paymentgateway.dto.ScenarioRequest;
 import com.pfa.paymentgateway.dto.ScenarioResponse;
 import com.pfa.paymentgateway.model.Scenario;
-import com.pfa.paymentgateway.repository.ScenarioRepository;
+import com.pfa.paymentgateway.repository.IScenarioRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -20,9 +20,9 @@ public class ScenarioService {
 
     private static final Logger logger = LoggerFactory.getLogger(ScenarioService.class);
 
-    private final ScenarioRepository scenarioRepository;
+    private final IScenarioRepository scenarioRepository;
 
-    public ScenarioService(ScenarioRepository scenarioRepository) {
+    public ScenarioService(IScenarioRepository scenarioRepository) {
         this.scenarioRepository = scenarioRepository;
     }
 
